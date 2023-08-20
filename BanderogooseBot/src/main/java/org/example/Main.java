@@ -19,8 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-
-
 public class Main extends TelegramLongPollingBot {
     /*
     Πpивіт!
@@ -58,9 +56,17 @@ public class Main extends TelegramLongPollingBot {
             if (update.getCallbackQuery().getData().equals("glory_for_ukraine")) {
                 SendMessage message = createMessage("Героям Слава!");
                 message.setChatId(chatId);
+                attachButtons(message, Map.of("Слава Нації!", "glory_for_nation"));
+                sendApiMethodAsync(message);
+
+            }
+            if (update.getCallbackQuery().getData().equals("glory_for_nation")) {
+                SendMessage message = createMessage("Смерть ворогам!");
+                message.setChatId(chatId);
                 sendApiMethodAsync(message);
             }
         }
+
     }
 
     public Long getChatId(Update update) {
